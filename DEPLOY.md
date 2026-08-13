@@ -31,10 +31,10 @@ git push origin main
 
 ## 2. 登录服务器并发布
 
-用一条远程命令完成更新和启动（需要能访问 SSH 私钥和公网）：
+用一条远程命令完成更新和启动（需要能访问 SSH 私钥和公网）。服务器上的 Node 由 nvm 管理，非交互 SSH 不会自动加载，必须先 source `nvm.sh`：
 
 ```bash
-ssh -i "C:\Users\zoruf\.ssh\ningxin-aliyun" -o StrictHostKeyChecking=accept-new root@47.98.124.127 "cd /home/mocuili/github/zhijianli && git pull && bash start-prod.sh"
+ssh -i "C:\Users\zoruf\.ssh\ningxin-aliyun" -o StrictHostKeyChecking=accept-new root@47.98.124.127 "export NVM_DIR=/root/.nvm; . /root/.nvm/nvm.sh; cd /home/mocuili/github/zhijianli && git pull && bash start-prod.sh"
 ```
 
 `start-prod.sh` 会构建，通常需要几十秒。等它跑完，确认输出里有预览进程 PID。
