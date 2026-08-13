@@ -48,6 +48,17 @@ export type SkillCard = {
   tags: string[];
 };
 
+export type CounselingCopy = {
+  trainingTitle: string;
+  training: string[];
+  practiceTitle: string;
+  practice: string[];
+  schoolsLabel: string;
+  schools: string[];
+  authorsLabel: string;
+  authors: string[];
+};
+
 export type FaqItem = {
   question: string;
   answer: string | string[];
@@ -71,6 +82,7 @@ export type UiCopy = {
   skillsLabel: string;
   skillsTitle: string;
   skillTagsAria: string;
+  counselingAria: string;
   productsLabel: string;
   productsTitle: string;
   productsLead: string;
@@ -104,6 +116,7 @@ export type SiteCopy = {
   timeline: { period: string; title: string; desc: string }[];
   social: SocialLink[];
   skillCards: SkillCard[];
+  counseling: CounselingCopy;
   products: Product[];
   faqs: FaqItem[];
 };
@@ -209,6 +222,7 @@ const zh: SiteCopy = {
     skillsLabel: "技术专长",
     skillsTitle: "全栈能力 · 跨领域应用",
     skillTagsAria: "技术",
+    counselingAria: "心理咨询领域",
     productsLabel: "独立开发产品",
     productsTitle: "在十字路口构建的产品",
     productsLead: "一些独立开发产品的视频和介绍，还在线的产品也有链接可以体验。",
@@ -312,6 +326,22 @@ const zh: SiteCopy = {
       tags: ["ASR 语音识别", "Dify", "Coze"],
     },
   ],
+  counseling: {
+    trainingTitle: "专业培训",
+    training: [
+      "曾参加杭州德瑞姆国家心理咨询师培训两年，持有国家三级心理咨询师证书（编号：1503000210300408）。",
+      "参与香港精神分析家苏伟峰教授的拉康派心理学培训一年，并合作发表论文集《凝定与变迁》。",
+    ],
+    practiceTitle: "实务经验",
+    practice: [
+      "累计 100+ 小时个人体验。",
+      "2017 年开始参与杭州第七人民医院危机干预热线工作，累计 200+ 小时，并参与编写《杭州市心理援助热线指导手册》。",
+    ],
+    schoolsLabel: "喜欢流派",
+    schools: ["精神分析", "存在主义", "焦点解决"],
+    authorsLabel: "喜欢的作家",
+    authors: ["武志红", "欧文·亚隆", "卡伦·霍尼", "南希·麦克威廉斯"],
+  },
   products: [
     {
       ...productShared[0],
@@ -437,6 +467,7 @@ const en: SiteCopy = {
     skillsLabel: "Expertise",
     skillsTitle: "Full-stack, applied across domains",
     skillTagsAria: "technologies",
+    counselingAria: "Counseling background",
     productsLabel: "Indie products",
     productsTitle: "Built at the crossroads",
     productsLead:
@@ -541,6 +572,22 @@ const en: SiteCopy = {
       tags: ["ASR", "Dify", "Coze"],
     },
   ],
+  counseling: {
+    trainingTitle: "Training",
+    training: [
+      "Two years of national counselor training at Hangzhou Dream, with a national Level-3 counseling certificate (No. 1503000210300408).",
+      "One year of Lacanian training with Hong Kong psychoanalyst Prof. So Wai Fung, and a co-authored essay collection, Fixation and Change.",
+    ],
+    practiceTitle: "Practice",
+    practice: [
+      "100+ hours of personal therapy.",
+      "Since 2017, 200+ hours on the crisis-intervention hotline at Hangzhou Seventh People's Hospital, and a contributor to the Hangzhou Psychological Assistance Hotline Handbook.",
+    ],
+    schoolsLabel: "Preferred approaches",
+    schools: ["Psychoanalysis", "Existential", "Solution-Focused"],
+    authorsLabel: "Favorite writers",
+    authors: ["Wu Zhihong", "Irvin Yalom", "Karen Horney", "Nancy McWilliams"],
+  },
   products: [
     {
       ...productShared[0],

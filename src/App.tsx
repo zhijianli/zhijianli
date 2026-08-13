@@ -367,6 +367,46 @@ function App() {
                 </li>
               ))}
             </ul>
+            <div className="counseling-grid" aria-label={ui.counselingAria}>
+              <article className="counseling-card">
+                <h3>{copy.counseling.trainingTitle}</h3>
+                <ul className="counseling-card__items">
+                  {copy.counseling.training.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </article>
+              <article className="counseling-card">
+                <h3>{copy.counseling.practiceTitle}</h3>
+                <ul className="counseling-card__items">
+                  {copy.counseling.practice.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </article>
+              <article className="counseling-card">
+                <h3>{copy.counseling.schoolsLabel}</h3>
+                <ul
+                  className="chip-list counseling-card__chips"
+                  aria-label={copy.counseling.schoolsLabel}
+                >
+                  {copy.counseling.schools.map((school) => (
+                    <li key={school}>{school}</li>
+                  ))}
+                </ul>
+              </article>
+              <article className="counseling-card">
+                <h3>{copy.counseling.authorsLabel}</h3>
+                <ul
+                  className="chip-list counseling-card__chips"
+                  aria-label={copy.counseling.authorsLabel}
+                >
+                  {copy.counseling.authors.map((author) => (
+                    <li key={author}>{author}</li>
+                  ))}
+                </ul>
+              </article>
+            </div>
           </div>
         </section>
 

@@ -573,6 +573,60 @@
   padding: 2px 8px;
 }
 
+.counseling-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.counseling-card {
+  min-width: 0;
+  padding: 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+}
+
+.counseling-card h3 {
+  margin: 0;
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+}
+
+.counseling-card__items {
+  list-style: none;
+  margin: 12px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+}
+
+.counseling-card__items li {
+  position: relative;
+  padding-left: 14px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.counseling-card__items li::before {
+  content: "";
+  position: absolute;
+  top: 8px;
+  left: 0;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--green) 70%, var(--border));
+}
+
+.counseling-card__chips {
+  margin-top: 12px;
+}
+
 .product-list {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1060,6 +1114,10 @@
 
   .skill-list {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .counseling-grid {
+    grid-template-columns: 1fr;
   }
 
   .product-list {
