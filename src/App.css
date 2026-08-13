@@ -589,7 +589,7 @@
 }
 
 .counseling-card h3 {
-  margin: 0;
+  margin: 16px 0 0;
   color: var(--text);
   font-size: 14px;
   font-weight: 600;

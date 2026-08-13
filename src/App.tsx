@@ -354,9 +354,7 @@ function App() {
             <ul className="skill-list">
               {copy.skillCards.map((skill) => (
                 <li key={skill.title} className="skill-card">
-                  <span className="skill-card__icon" aria-hidden>
-                    ✦
-                  </span>
+                  <CardMark />
                   <h3>{skill.title}</h3>
                   <p>{skill.description}</p>
                   <ul className="chip-list" aria-label={`${skill.title} ${ui.skillTagsAria}`}>
@@ -369,6 +367,7 @@ function App() {
             </ul>
             <div className="counseling-grid" aria-label={ui.counselingAria}>
               <article className="counseling-card">
+                <CardMark />
                 <h3>{copy.counseling.trainingTitle}</h3>
                 <ul className="counseling-card__items">
                   {copy.counseling.training.map((item) => (
@@ -377,6 +376,7 @@ function App() {
                 </ul>
               </article>
               <article className="counseling-card">
+                <CardMark />
                 <h3>{copy.counseling.practiceTitle}</h3>
                 <ul className="counseling-card__items">
                   {copy.counseling.practice.map((item) => (
@@ -385,6 +385,7 @@ function App() {
                 </ul>
               </article>
               <article className="counseling-card">
+                <CardMark />
                 <h3>{copy.counseling.schoolsLabel}</h3>
                 <ul
                   className="chip-list counseling-card__chips"
@@ -396,6 +397,7 @@ function App() {
                 </ul>
               </article>
               <article className="counseling-card">
+                <CardMark />
                 <h3>{copy.counseling.authorsLabel}</h3>
                 <ul
                   className="chip-list counseling-card__chips"
@@ -570,6 +572,14 @@ function App() {
         </div>
       </footer>
     </div>
+  );
+}
+
+function CardMark() {
+  return (
+    <span className="skill-card__icon" aria-hidden>
+      ✦
+    </span>
   );
 }
 
