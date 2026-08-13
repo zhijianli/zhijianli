@@ -1,26 +1,15 @@
 import { useEffect, useState } from "react";
+import { copies, type SocialLink } from "./content";
 import {
-  faqs,
-  products,
-  site,
-  skillCards,
-  type ProductStatus,
-  type SocialLink,
-} from "./content";
+  detectLocale,
+  detectLocaleByIp,
+  persistLocale,
+  readManualLocale,
+  type Locale,
+} from "./i18n";
 import "./App.css";
 
-const navItems = [
-  { id: "about", label: "关于我" },
-  { id: "skills", label: "技术栈" },
-  { id: "products", label: "产品" },
-  { id: "faq", label: "常见问题" },
-] as const;
-
-const statusLabel: Record<ProductStatus, string> = {
-  online: "在线",
-  soon: "即将上线",
-  offline: "已下线",
-};
+const navIds = ["about", "skills", "products", "faq"] as const;
 
 function videoPublicSrc(file: string): string {
   return `/videos/${encodeURIComponent(file)}`;
@@ -50,10 +39,16 @@ function SocialGlyph({ link }: { link: SocialLink }) {
   return null;
 }
 
-function HeroSocialRow({ onOpenWechat }: { onOpenWechat: (src: string) => void }) {
+function HeroSocialRow({
+  social,
+  onOpenWechat,
+}: {
+  social: SocialLink[];
+  onOpenWechat: (src: string) => void;
+}) {
   return (
     <ul className="social social--in-hero">
-      {site.social.map((s) => {
+      {social.map((s) => {
         const popupImage = "popupImage" in s && s.popupImage ? s.popupImage : null;
         if (popupImage) {
           return (
@@ -97,11 +92,26 @@ function HeroSocialRow({ onOpenWechat }: { onOpenWechat: (src: string) => void }
 }
 
 function App() {
+  const [locale, setLocale] = useState<Locale>(() => detectLocale());
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [lightboxSrc, setLightboxSrc] = useState<string | null>(null);
   const [aboutExpanded, setAboutExpanded] = useState(false);
   const [playingVideos, setPlayingVideos] = useState<Set<string>>(() => new Set());
+
+  const copy = copies[locale];
+  const { ui } = copy;
+  const navItems = [
+    { id: navIds[0], label: ui.nav.about },
+    { id: navIds[1], label: ui.nav.skills },
+    { id: navIds[2], label: ui.nav.products },
+    { id: navIds[3], label: ui.nav.faq },
+  ] as const;
+
+  const setAndPersistLocale = (next: Locale) => {
+    setLocale(next);
+    persistLocale(next);
+  };
 
   const markVideoPlaying = (file: string, playing: boolean) => {
     setPlayingVideos((current) => {
@@ -114,6 +124,25 @@ function App() {
       return next;
     });
   };
+
+  useEffect(() => {
+    if (readManualLocale()) return;
+    let cancelled = false;
+    void detectLocaleByIp().then((next) => {
+      if (cancelled || !next || readManualLocale()) return;
+      setLocale(next);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  useEffect(() => {
+    document.documentElement.lang = copy.htmlLang;
+    document.title = copy.documentTitle;
+    const meta = document.querySelector('meta[name="description"]');
+    meta?.setAttribute("content", copy.documentDescription);
+  }, [copy]);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -148,27 +177,62 @@ function App() {
   }, [lightboxSrc]);
 
   return (
-    <div className="page">
+    <div className="page" lang={copy.htmlLang}>
       <header className={`topbar ${scrolled ? "topbar--scrolled" : ""}`}>
         <a className="brand" href="#top" onClick={() => setMenuOpen(false)}>
-          <span className="brand__text">{site.brandTitle}</span>
+          <span className="brand__text">{copy.brandTitle}</span>
         </a>
-        <button
-          type="button"
-          className={`nav-toggle ${menuOpen ? "nav-toggle--open" : ""}`}
-          aria-expanded={menuOpen}
-          aria-controls="site-nav"
-          aria-label="切换导航"
-          onClick={() => setMenuOpen((o) => !o)}
-        >
-          <span className="nav-toggle__bar" />
-          <span className="nav-toggle__bar" />
-          <span className="nav-toggle__bar" />
-        </button>
+        <div className="topbar__actions">
+          <div className="lang-switch" role="group" aria-label={ui.language}>
+            <svg
+              className="lang-switch__globe"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              aria-hidden
+            >
+              <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" strokeWidth="1.7" />
+              <path
+                d="M3 12h18M12 3c2.8 3.2 2.8 14.8 0 18M12 3c-2.8 3.2-2.8 14.8 0 18"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.7"
+              />
+            </svg>
+            <button
+              type="button"
+              className={`lang-switch__btn ${locale === "zh" ? "lang-switch__btn--active" : ""}`}
+              aria-pressed={locale === "zh"}
+              onClick={() => setAndPersistLocale("zh")}
+            >
+              中文
+            </button>
+            <button
+              type="button"
+              className={`lang-switch__btn ${locale === "en" ? "lang-switch__btn--active" : ""}`}
+              aria-pressed={locale === "en"}
+              onClick={() => setAndPersistLocale("en")}
+            >
+              EN
+            </button>
+          </div>
+          <button
+            type="button"
+            className={`nav-toggle ${menuOpen ? "nav-toggle--open" : ""}`}
+            aria-expanded={menuOpen}
+            aria-controls="site-nav"
+            aria-label={ui.navToggle}
+            onClick={() => setMenuOpen((o) => !o)}
+          >
+            <span className="nav-toggle__bar" />
+            <span className="nav-toggle__bar" />
+            <span className="nav-toggle__bar" />
+          </button>
+        </div>
         <nav
           id="site-nav"
           className={`nav ${menuOpen ? "nav--open" : ""}`}
-          aria-label="主导航"
+          aria-label={ui.navAria}
         >
           {navItems.map(({ id, label }) => (
             <a
@@ -186,7 +250,7 @@ function App() {
         <button
           type="button"
           className="nav-backdrop"
-          aria-label="关闭菜单"
+          aria-label={ui.closeMenu}
           onClick={() => setMenuOpen(false)}
         />
       ) : null}
@@ -195,21 +259,21 @@ function App() {
         <section className="hero">
           <div className="hero__inner">
             <div className="hero__copy">
-              <p className="eyebrow hero__eyebrow">{site.heroEyebrow}</p>
-              <h1 className="hero__name">{site.name}</h1>
-              <h2 className="hero__role">{site.heroTitle}</h2>
-              <p className="hero__tagline">{site.tagline}</p>
-              <ul className="pill-list" aria-label="核心标签">
-                {site.heroTags.map((tag) => (
+              <p className="eyebrow hero__eyebrow">{copy.heroEyebrow}</p>
+              <h1 className="hero__name">{copy.name}</h1>
+              <h2 className="hero__role">{copy.heroTitle}</h2>
+              <p className="hero__tagline">{copy.tagline}</p>
+              <ul className="pill-list" aria-label={ui.heroTagsAria}>
+                {copy.heroTags.map((tag) => (
                   <li key={tag} className="pill">
                     {tag}
                   </li>
                 ))}
               </ul>
-              <HeroSocialRow onOpenWechat={setLightboxSrc} />
+              <HeroSocialRow social={copy.social} onOpenWechat={setLightboxSrc} />
             </div>
-            <dl className="stat-grid" aria-label="个人概览">
-              {site.stats.map((stat) => (
+            <dl className="stat-grid" aria-label={ui.statsAria}>
+              {copy.stats.map((stat) => (
                 <div key={`${stat.value}-${stat.label}`} className="stat-card">
                   <dt>{stat.value}</dt>
                   <dd>{stat.label}</dd>
@@ -223,8 +287,8 @@ function App() {
           <div className="section__inner">
             <div className="section-grid">
               <div className="section-copy">
-                <SectionHeading index="01" label="关于我" title="走到十字路口之前" />
-                <p className="about__intro">{site.aboutIntro}</p>
+                <SectionHeading index="01" label={ui.aboutLabel} title={ui.aboutTitle} />
+                <p className="about__intro">{copy.aboutIntro}</p>
                 <div
                   className={`about__story ${aboutExpanded ? "about__story--expanded" : ""}`}
                   id="about-story"
@@ -232,7 +296,7 @@ function App() {
                 >
                   <div className="about__story-inner">
                     <div className="about__text">
-                      {site.aboutParagraphs.map((paragraph) => (
+                      {copy.aboutParagraphs.map((paragraph) => (
                         <p key={paragraph}>{paragraph}</p>
                       ))}
                     </div>
@@ -265,13 +329,13 @@ function App() {
                       strokeLinejoin="round"
                     />
                   </svg>
-                  {aboutExpanded ? "收起" : "展开完整故事"}
+                  {aboutExpanded ? ui.aboutCollapse : ui.aboutExpand}
                 </button>
               </div>
-              <aside className="timeline-panel" aria-label="来时路">
-                <h3>来时路</h3>
+              <aside className="timeline-panel" aria-label={ui.timelineAria}>
+                <h3>{ui.timelineTitle}</h3>
                 <ol className="timeline">
-                  {site.timeline.map((item) => (
+                  {copy.timeline.map((item) => (
                     <li key={item.title} className="timeline__item">
                       <span className="timeline__period">{item.period}</span>
                       <strong className="timeline__title">{item.title}</strong>
@@ -286,16 +350,16 @@ function App() {
 
         <section id="skills" className="section">
           <div className="section__inner">
-            <SectionHeading index="02" label="技术专长" title="全栈能力 · 跨领域应用" />
+            <SectionHeading index="02" label={ui.skillsLabel} title={ui.skillsTitle} />
             <ul className="skill-list">
-              {skillCards.map((skill) => (
+              {copy.skillCards.map((skill) => (
                 <li key={skill.title} className="skill-card">
                   <span className="skill-card__icon" aria-hidden>
                     ✦
                   </span>
                   <h3>{skill.title}</h3>
                   <p>{skill.description}</p>
-                  <ul className="chip-list" aria-label={`${skill.title} 技术`}>
+                  <ul className="chip-list" aria-label={`${skill.title} ${ui.skillTagsAria}`}>
                     {skill.tags.map((tag) => (
                       <li key={tag}>{tag}</li>
                     ))}
@@ -308,12 +372,14 @@ function App() {
 
         <section id="products" className="section section--products">
           <div className="section__inner">
-            <SectionHeading index="03" label="独立开发产品" title="在十字路口构建的产品" />
-            <p className="section__lead">
-              一些独立开发产品的视频和介绍，还在线的产品也有链接可以体验。
-            </p>
+            <SectionHeading
+              index="03"
+              label={ui.productsLabel}
+              title={ui.productsTitle}
+            />
+            <p className="section__lead">{ui.productsLead}</p>
             <ul className="product-list">
-              {products.map((p) => {
+              {copy.products.map((p) => {
                 const playing = playingVideos.has(p.video);
                 return (
                   <li
@@ -347,7 +413,7 @@ function App() {
                         onPause={() => markVideoPlaying(p.video, false)}
                         onEnded={() => markVideoPlaying(p.video, false)}
                       >
-                        您的浏览器不支持 HTML5 视频。
+                        {ui.videoUnsupported}
                       </video>
                       <div className="product-card__tint" aria-hidden />
                       <div className="product-card__overlay" aria-hidden>
@@ -364,7 +430,7 @@ function App() {
                           <span
                             className={`product-card__badge product-card__badge--${p.status}`}
                           >
-                            {statusLabel[p.status]}
+                            {ui.status[p.status]}
                           </span>
                         </div>
                         <p className="product-card__kicker">{p.kicker}</p>
@@ -379,7 +445,7 @@ function App() {
                             ? { target: "_blank", rel: "noreferrer" }
                             : {})}
                         >
-                          立即体验 <span aria-hidden>↗</span>
+                          {ui.tryNow} <span aria-hidden>↗</span>
                         </a>
                       ) : null}
                     </div>
@@ -392,9 +458,9 @@ function App() {
 
         <section id="faq" className="section section--faq">
           <div className="section__inner">
-            <SectionHeading index="04" label="常见问题" title="关于 墨崔 的常见问题" />
+            <SectionHeading index="04" label={ui.faqLabel} title={ui.faqTitle} />
             <div className="faq-list">
-              {faqs.map((faq) => {
+              {copy.faqs.map((faq) => {
                 const paragraphs = Array.isArray(faq.answer)
                   ? faq.answer
                   : [faq.answer];
@@ -425,19 +491,19 @@ function App() {
           className="lightbox"
           role="dialog"
           aria-modal="true"
-          aria-label="微信二维码"
+          aria-label={ui.wechatQr}
         >
           <button
             type="button"
             className="lightbox__backdrop"
-            aria-label="关闭"
+            aria-label={ui.close}
             onClick={() => setLightboxSrc(null)}
           />
           <div className="lightbox__panel">
             <button
               type="button"
               className="lightbox__close"
-              aria-label="关闭"
+              aria-label={ui.close}
               onClick={() => setLightboxSrc(null)}
             >
               ×
@@ -445,7 +511,7 @@ function App() {
             <img
               className="lightbox__img"
               src={lightboxSrc}
-              alt="微信二维码"
+              alt={ui.wechatQr}
             />
           </div>
         </div>
@@ -454,11 +520,13 @@ function App() {
       <footer className="footer">
         <div className="footer__inner">
           <div>
-            <p className="footer__copy">墨崔 · 独立开发者</p>
-            <p className="footer__credit">疗愈 × 技术 · 常驻杭州 · 2026</p>
+            <p className="footer__copy">{ui.footerCopy}</p>
+            <p className="footer__credit">{ui.footerCredit}</p>
           </div>
-          <HeroSocialRow onOpenWechat={setLightboxSrc} />
-          <p className="footer__copy">© {new Date().getFullYear()} 版权所有</p>
+          <HeroSocialRow social={copy.social} onOpenWechat={setLightboxSrc} />
+          <p className="footer__copy">
+            © {new Date().getFullYear()} {ui.copyright}
+          </p>
         </div>
       </footer>
     </div>
