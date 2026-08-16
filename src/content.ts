@@ -72,7 +72,7 @@ export type UiCopy = {
   navAria: string;
   closeMenu: string;
   heroTagsAria: string;
-  statsAria: string;
+  heroPortraitAlt: string;
   aboutLabel: string;
   aboutTitle: string;
   aboutExpand: string;
@@ -110,7 +110,6 @@ export type SiteCopy = {
   heroEyebrow: string;
   heroTitle: string;
   heroTags: string[];
-  stats: { value: string; label: string }[];
   aboutIntro: string;
   aboutParagraphs: string[];
   timeline: { period: string; title: string; desc: string }[];
@@ -212,7 +211,7 @@ const zh: SiteCopy = {
     navAria: "主导航",
     closeMenu: "关闭菜单",
     heroTagsAria: "有趣的观察",
-    statsAria: "个人概览",
+    heroPortraitAlt: "墨崔的照片",
     aboutLabel: "关于我",
     aboutTitle: "我如何走到十字路口？",
     aboutExpand: "展开完整故事",
@@ -248,12 +247,12 @@ const zh: SiteCopy = {
     "我的60%是程序员，40%却是心理咨询师，因此我希望在疗愈与技术的交汇处，综合运用两边的积累，做出能帮助他人的产品。",
   heroEyebrow: "我是 . 独立开发者",
   heroTitle: "站在疗愈与技术的十字路口",
-  heroTags: ["程序员", "国家三级心理咨询师", "危机干预志愿者", "疗愈行业架构师"],
-  stats: [
-    { value: "10+", label: "年技术经验" },
-    { value: "8+", label: "年心理行业经验" },
-    { value: "常驻", label: "杭州" },
-    { value: "6+", label: "独立项目" },
+  heroTags: [
+    "10+ 年技术经验",
+    "8+ 年心理行业经验",
+    "国家三级心理咨询师",
+    "危机干预志愿者",
+    "疗愈行业架构师",
   ],
   aboutIntro:
     "我现在觉得，很多事情规划不出来，叙事弧线是当生命中的各个事情发生之后自己串联剪辑出来的，貌似乔布斯在他那次著名的演讲中也讲过类似的观点。",
@@ -458,7 +457,7 @@ const en: SiteCopy = {
     navAria: "Main navigation",
     closeMenu: "Close menu",
     heroTagsAria: "Observations",
-    statsAria: "Snapshot",
+    heroPortraitAlt: "Portrait of Mocui",
     aboutLabel: "About",
     aboutTitle: "How did I get to the crossroads?",
     aboutExpand: "Read the full story",
@@ -496,15 +495,11 @@ const en: SiteCopy = {
   heroEyebrow: "I am . Independent developer",
   heroTitle: "At the crossroads of healing and technology",
   heroTags: [
-    "Crisis intervention volunteer",
+    "10+ years in tech",
+    "8+ years in mental health",
     "National Level-3 counselor",
+    "Crisis intervention volunteer",
     "Healing architect",
-  ],
-  stats: [
-    { value: "10+", label: "Years in tech" },
-    { value: "8+", label: "Years in mental health" },
-    { value: "Based in", label: "Hangzhou" },
-    { value: "6+", label: "Indie projects" },
   ],
   aboutIntro:
     "I've come to feel that many things can't be planned. The narrative arc only appears after the events of a life have already happened — then you splice them together. I think Steve Jobs said something similar in that famous speech.",

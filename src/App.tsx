@@ -272,14 +272,16 @@ function App() {
               </ul>
               <HeroSocialRow social={copy.social} onOpenWechat={setLightboxSrc} />
             </div>
-            <dl className="stat-grid" aria-label={ui.statsAria}>
-              {copy.stats.map((stat) => (
-                <div key={`${stat.value}-${stat.label}`} className="stat-card">
-                  <dt>{stat.value}</dt>
-                  <dd>{stat.label}</dd>
-                </div>
-              ))}
-            </dl>
+            <div className="hero__aside">
+              <figure className="hero__portrait">
+                <img
+                  src="/images/coding.png"
+                  alt={ui.heroPortraitAlt}
+                  width={500}
+                  height={500}
+                />
+              </figure>
+            </div>
           </div>
         </section>
 
