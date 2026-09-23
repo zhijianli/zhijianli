@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { BlogPage, NotFoundPage } from "./Blog";
+import { getPost } from "./blogPosts";
 import { copies, type SocialLink } from "./content";
 import {
   detectLocale,
@@ -7,9 +9,8 @@ import {
   readManualLocale,
   type Locale,
 } from "./i18n";
+import { AppLink, useRoute } from "./route";
 import "./App.css";
-
-const navIds = ["about", "skills", "products", "faq"] as const;
 
 function videoPublicSrc(file: string): string {
   return `/videos/${encodeURIComponent(file)}`;
@@ -92,6 +93,7 @@ function HeroSocialRow({
 }
 
 function App() {
+  const { route } = useRoute();
   const [locale, setLocale] = useState<Locale>(() => detectLocale());
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -102,10 +104,18 @@ function App() {
   const copy = copies[locale];
   const { ui } = copy;
   const navItems = [
-    { id: navIds[0], label: ui.nav.about },
-    { id: navIds[1], label: ui.nav.skills },
-    { id: navIds[2], label: ui.nav.products },
-    { id: navIds[3], label: ui.nav.faq },
+    {
+      id: "about",
+      label: ui.nav.about,
+      href: "/#about",
+      current: route.page === "home",
+    },
+    {
+      id: "blog",
+      label: ui.nav.blog,
+      href: "/blog",
+      current: route.page === "blog",
+    },
   ] as const;
 
   const setAndPersistLocale = (next: Locale) => {
@@ -139,10 +149,22 @@ function App() {
 
   useEffect(() => {
     document.documentElement.lang = copy.htmlLang;
-    document.title = copy.documentTitle;
     const meta = document.querySelector('meta[name="description"]');
+    if (route.page === "blog") {
+      const post = route.slug ? getPost(locale, route.slug) : undefined;
+      document.title = post
+        ? `${post.title} — ${copy.brandTitle}`
+        : `${ui.blogLabel} — ${copy.brandTitle}`;
+      meta?.setAttribute("content", post?.excerpt ?? ui.blogLead);
+      return;
+    }
+    if (route.page === "notfound") {
+      document.title = `${ui.notFoundTitle} — ${copy.brandTitle}`;
+      return;
+    }
+    document.title = copy.documentTitle;
     meta?.setAttribute("content", copy.documentDescription);
-  }, [copy]);
+  }, [copy, locale, route, ui.blogLabel, ui.blogLead, ui.notFoundTitle]);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -179,9 +201,9 @@ function App() {
   return (
     <div className="page" lang={copy.htmlLang}>
       <header className={`topbar ${scrolled ? "topbar--scrolled" : ""}`}>
-        <a className="brand" href="#top" onClick={() => setMenuOpen(false)}>
+        <AppLink className="brand" href="/" onClick={() => setMenuOpen(false)}>
           <span className="brand__text">{copy.brandTitle}</span>
-        </a>
+        </AppLink>
         <div className="topbar__actions">
           <div className="lang-switch" role="group" aria-label={ui.language}>
             <svg
@@ -234,15 +256,16 @@ function App() {
           className={`nav ${menuOpen ? "nav--open" : ""}`}
           aria-label={ui.navAria}
         >
-          {navItems.map(({ id, label }) => (
-            <a
+          {navItems.map(({ id, label, href, current }) => (
+            <AppLink
               key={id}
-              className="nav__link"
-              href={`#${id}`}
+              className={`nav__link${current ? " nav__link--active" : ""}`}
+              href={href}
+              aria-current={current ? "page" : undefined}
               onClick={() => setMenuOpen(false)}
             >
               {label}
-            </a>
+            </AppLink>
           ))}
         </nav>
       </header>
@@ -255,6 +278,11 @@ function App() {
         />
       ) : null}
 
+      {route.page === "blog" ? (
+        <BlogPage locale={locale} copy={copy} slug={route.slug} />
+      ) : route.page === "notfound" ? (
+        <NotFoundPage copy={copy} />
+      ) : (
       <main id="top">
         <section className="hero">
           <div className="hero__inner">
@@ -529,6 +557,7 @@ function App() {
           </div>
         </section>
       </main>
+      )}
 
       {lightboxSrc ? (
         <div

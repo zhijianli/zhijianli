@@ -67,7 +67,7 @@ export type FaqItem = {
 };
 
 export type UiCopy = {
-  nav: { about: string; skills: string; products: string; faq: string };
+  nav: { about: string; blog: string };
   navToggle: string;
   navAria: string;
   closeMenu: string;
@@ -97,6 +97,17 @@ export type UiCopy = {
   copyright: string;
   language: string;
   status: Record<ProductStatus, string>;
+  blogLabel: string;
+  blogTitle: string;
+  blogLead: string;
+  blogBack: string;
+  blogEmpty: string;
+  blogNotFound: string;
+  blogNotFoundLead: string;
+  blogHome: string;
+  notFoundLabel: string;
+  notFoundTitle: string;
+  notFoundLead: string;
 };
 
 export type SiteCopy = {
@@ -152,7 +163,7 @@ const productShared = [
     duration: "0:09",
     status: "online" as const,
     accent: "#6b4f8a",
-    href: "https://songjing.menganhealth.cn/",
+    href: "https://songjing.ningxin.net.cn/",
     umamiEvent: "cta-songjing",
   },
   {
@@ -161,7 +172,7 @@ const productShared = [
     duration: "0:17",
     status: "online" as const,
     accent: "#b85c38",
-    href: "https://yuyi.menganhealth.cn/",
+    href: "https://yuyi.ningxin.net.cn/",
     umamiEvent: "cta-yuyi",
   },
   {
@@ -203,9 +214,7 @@ const zh: SiteCopy = {
   ui: {
     nav: {
       about: "关于我",
-      skills: "技术栈",
-      products: "产品",
-      faq: "常见问题",
+      blog: "博客",
     },
     navToggle: "切换导航",
     navAria: "主导航",
@@ -240,6 +249,17 @@ const zh: SiteCopy = {
       soon: "即将上线",
       offline: "已下线",
     },
+    blogLabel: "博客",
+    blogTitle: "一些想法和调研",
+    blogLead: "都是平时积累的内容，希望对你有用",
+    blogBack: "返回博客",
+    blogEmpty: "还没有文章。",
+    blogNotFound: "没有找到这篇文章",
+    blogNotFoundLead: "它可能还没写，或者已经换了地址。",
+    blogHome: "回到首页",
+    notFoundLabel: "404",
+    notFoundTitle: "页面不存在",
+    notFoundLead: "这个地址没有对应的内容。",
   },
   brandTitle: "墨崔",
   name: "墨崔",
@@ -449,9 +469,7 @@ const en: SiteCopy = {
   ui: {
     nav: {
       about: "About",
-      skills: "Skills",
-      products: "Products",
-      faq: "FAQ",
+      blog: "Blog",
     },
     navToggle: "Toggle navigation",
     navAria: "Main navigation",
@@ -487,6 +505,17 @@ const en: SiteCopy = {
       soon: "Coming soon",
       offline: "Offline",
     },
+    blogLabel: "Blog",
+    blogTitle: "Thoughts that aren't products yet",
+    blogLead: "No publishing schedule. When something arrives, it lives here.",
+    blogBack: "Back to the blog",
+    blogEmpty: "No posts yet.",
+    blogNotFound: "This post wasn't found",
+    blogNotFoundLead: "It may not be written yet, or the address has changed.",
+    blogHome: "Back home",
+    notFoundLabel: "404",
+    notFoundTitle: "Page not found",
+    notFoundLead: "Nothing lives at this address.",
   },
   brandTitle: "Mocui",
   name: "Mocui",
