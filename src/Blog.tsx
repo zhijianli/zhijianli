@@ -51,6 +51,23 @@ export function BlogPage({
               if (block.type === "h2") {
                 return <h2 key={`${index}-${block.text}`}>{block.text}</h2>;
               }
+              if (block.type === "img") {
+                return (
+                  <figure key={`${index}-${block.src}`} className="article__figure">
+                    <img
+                      className="article__img"
+                      src={block.src}
+                      alt={block.alt}
+                      loading="lazy"
+                    />
+                    {block.caption ? (
+                      <figcaption className="article__caption">
+                        {renderRichText(block.caption)}
+                      </figcaption>
+                    ) : null}
+                  </figure>
+                );
+              }
               if (block.type === "table") {
                 return (
                   <div key={`${index}-table`} className="article__table-wrap">
