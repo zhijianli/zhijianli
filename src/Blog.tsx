@@ -109,7 +109,6 @@ export function BlogPage({
   return (
     <main className="blog">
       <div className="blog__inner">
-        <p className="eyebrow">{ui.blogLabel}</p>
         <h1 className="blog__title">{ui.blogTitle}</h1>
         <p className="blog__lead">{ui.blogLead}</p>
         {posts.length === 0 ? (

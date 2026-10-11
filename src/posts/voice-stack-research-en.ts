@@ -12,6 +12,9 @@ const tbl = (headers: string[], rows: string[][]): BlogBlock => ({
 });
 
 export const voiceStackResearchBodyEn: BlogBlock[] = [
+  p(
+    "A team recently asked me to survey mature voice solutions on the market for their coaching product. I researched domestic and international options suited to coaching tech, and the report is below."
+  ),
   p("**Version**: v0.1 · **Date**: 2026-09-22"),
   h2("Executive Summary"),
   p("The Volo coaching product requires **bilingual real-time voice dialogue in Chinese and English**, with backend deployed in **AWS US East (Ohio, us-east-2)**."),
@@ -116,7 +119,7 @@ export const voiceStackResearchBodyEn: BlogBlock[] = [
   ["Dimension", "Negative Ratio", "Key Findings", "Coaching Scenario Implication"],
   [
     ["Long-session stability", "28.9% (28/97)", "10–15min accuracy decline; ~30% connections succeed but no audio; model upgrade regression / rollback", "30min coaching requires session monitoring + version rollback plan"],
-    ["Tone naturalness", "19.6% (19/97)", "robotic, worse than ElevenLabs·Google; \"more expressive\" not delivered", "Cannot assume out-of-box \"therapeutic tone\""],
+    ["Tone naturalness", "19.6% (19/97)", "robotic, worse than ElevenLabs·Google; \"more expressive\" not delivered", "Cannot assume out-of-box \"psychological tone\""],
     ["Cost", "16.5% (16/97)", "Too expensive for production / prototype $40+ / context token bloat (not contradicting §3.2 listen+speak $1.44/30min)", "Long conversations need separate cost guardrails"],
     ["Interruption / barge-in", "15.5% (15/97)", "Self-interruption; VAD tuning still too sensitive; speaker AEC/echo causes self-talk", "WebRTC AEC + semantic VAD (eagerness: medium)"],
     ["Response speed", "8.2% (8/97)", "gpt-realtime-2 5–20s dead air between turns; function calling slower; default speech rate too slow", "Monitor inter-turn pauses, rollback version if needed"],
@@ -142,7 +145,7 @@ export const voiceStackResearchBodyEn: BlogBlock[] = [
   ["Dimension", "Positive Ratio", "Key Findings", "Coaching Scenario Implication"],
   [
     ["Response speed", "9.1% (14/154)", "Subsequent turns 2–3s; 3.1 Flash Live upgrade lower latency; some production ~922ms", "First connect/first packet still slow, cannot assume full-chain low latency"],
-    ["Tone naturalness", "7.1% (11/154)", "expressive / emotional response \"whole other level\"; more \"natural\" after 3.1 migration; audio quality recognized", "High therapeutic tone potential, but often coexists with missing function calling"],
+    ["Tone naturalness", "7.1% (11/154)", "expressive / emotional response \"whole other level\"; more \"natural\" after 3.1 migration; audio quality recognized", "High psychological tone potential, but often coexists with missing function calling"],
     ["Interruption / barge-in", "4.5% (7/154)", "silenceDurationMs / END_SENSITIVITY tuning works; activity_start flush workaround; AEC config guide", "Requires client VAD + engineering workaround, not out-of-box stable"],
     ["Long-session stability", "0% (0/154)", "No explicit positive statements like \"30min stable without disconnect\"", "Long coaching sessions require self-built monitoring and compression/resumption"],
     ["Cost", "0% (0/154)", "No \"reasonable pricing\" consensus; despite §3.2 theoretical listen+speak $0.34/30min, community mostly discusses token bloat", "Long conversations need separate cost guardrails + context compression"],
@@ -229,7 +232,7 @@ export const voiceStackResearchBodyEn: BlogBlock[] = [
     ["Long-session stability", "23.6% (17/72)", "Pure end-to-end 700–900ms with occasional Function Call failure/no injection; same ecosystem ASR corpus hallucination; V2EX says qwen infra \"not production-ready\"", "30min coaching shouldn't rely purely on Realtime FC; needs volo external or dual-track"],
     ["Cost", "13.9% (10/72)", "V2EX comparison thinks qwen engineering/billing worse than Doubao; Flash misjudges turn causing repeated input raising usage; Plus higher unit price", "Billing monitoring required; Simple flow uses Flash + quality gate"],
     ["Response speed", "11.1% (8/72)", "Pure end-to-end first-char 700–900ms; cascade floor 800ms+; Qwen PC input \"2s+ unacceptable\" (not Realtime API)", "Cannot assume full-chain sub-500ms; Ohio cross-border needs Demo validation"],
-    ["Tone naturalness", "4.2% (3/72)", "Flash talks over / cuts sentence tail; background noise misjudged as command; conflicts with \"natural turn\" goal", "Therapeutic coaching choose Plus; Flash only for low-latency probing"],
+    ["Tone naturalness", "4.2% (3/72)", "Flash talks over / cuts sentence tail; background noise misjudged as command; conflicts with \"natural turn\" goal", "Psychology coaching choose Plus; Flash only for low-latency probing"],
     ["Interruption / barge-in", "4.2% (3/72)", "Uncleared buffer plays \"stale answer\" with echo; backend cancel only without local playback stop still \"broken\"", "Must implement barge-in full chain; cannot look at model side only"],
   ],
 ),

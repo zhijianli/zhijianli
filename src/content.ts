@@ -209,12 +209,12 @@ const productShared = [
 
 const zh: SiteCopy = {
   htmlLang: "zh-CN",
-  documentTitle: "墨崔 — 疗愈与技术的十字路口",
-  documentDescription: "墨崔 的独立开发者个人主页，关注疗愈与技术的交汇。",
+  documentTitle: "墨崔 — 心理与技术的十字路口",
+  documentDescription: "墨崔 的独立开发者个人主页，关注心理与技术的交汇。",
   ui: {
     nav: {
       about: "关于我",
-      blog: "博客",
+      blog: "调研报告",
     },
     navToggle: "切换导航",
     navAria: "主导航",
@@ -241,7 +241,7 @@ const zh: SiteCopy = {
     wechatQr: "微信二维码",
     close: "关闭",
     footerCopy: "墨崔 · 独立开发者",
-    footerCredit: "疗愈 × 技术 · 常驻杭州 · 2026",
+    footerCredit: "心理 × 技术 · 常驻杭州 · 2026",
     copyright: "版权所有",
     language: "语言",
     status: {
@@ -249,10 +249,10 @@ const zh: SiteCopy = {
       soon: "即将上线",
       offline: "已下线",
     },
-    blogLabel: "博客",
+    blogLabel: "调研报告",
     blogTitle: "一些想法和调研",
-    blogLead: "都是平时积累的内容，希望对你有用",
-    blogBack: "返回博客",
+    blogLead: "都是平时积累的心理咨询/技术/心理行业/商业相关的调研内容，希望对你有用",
+    blogBack: "返回调研报告",
     blogEmpty: "还没有文章。",
     blogNotFound: "没有找到这篇文章",
     blogNotFoundLead: "它可能还没写，或者已经换了地址。",
@@ -264,15 +264,15 @@ const zh: SiteCopy = {
   brandTitle: "墨崔",
   name: "墨崔",
   tagline:
-    "我的60%是程序员，40%却是心理咨询师，因此我希望在疗愈与技术的交汇处，综合运用两边的积累，做出能帮助他人的产品。",
+    "我的60%是程序员，40%却是心理咨询师，因此我希望在心理与技术的交汇处，综合运用两边的积累，做出能帮助他人的产品。",
   heroEyebrow: "我是 . 独立开发者",
-  heroTitle: "站在疗愈与技术的十字路口",
+  heroTitle: "站在心理与技术的十字路口",
   heroTags: [
     "10+ 年技术经验",
     "8+ 年心理行业经验",
     "国家三级心理咨询师",
     "危机干预志愿者",
-    "疗愈行业架构师",
+    "心理行业架构师",
   ],
   aboutIntro:
     "我现在觉得，很多事情规划不出来，叙事弧线是当生命中的各个事情发生之后自己串联剪辑出来的，貌似乔布斯在他那次著名的演讲中也讲过类似的观点。",
@@ -282,7 +282,7 @@ const zh: SiteCopy = {
     "而在这段漫长的奥德赛时期，武志红提供了一个出口，让我遇见了心理咨询，并在后续的学习过程中得到了非常多的正面反馈，因此当时想着我可以尝试着走走心理咨询师这条道路，于是J人开始行动，在德瑞姆学了两年，考了国家心理咨询师三级，在杭州七院开始做危机干预热线，当时觉得挺顺的，觉得自己就是为这个事业而生的，殊不知当你这么想的时候，正是处在愚昧之巅的时候，然后，顺理成章就下滑到绝望之谷，发现自己对于直接做心理咨询师帮助他人，或许并不合适。",
     "然后，某日在云南大理洱海旁，忽然灵光一闪，想着既然我会技术，又学了那么久的心理学，为何不把这两者结合起来，在这两个领域的交叉地带做些事情呢。",
     "事情从这里开始有了转变，开始走上一条平稳之坡了，先在杭州心猫网络（心理咨询平台）从零搭建心理测评类产品，一段非常幸福的职业生涯，也让我知道从事自己所热爱的事业是什么感觉。而后，也在杭州健海科技（慢病健康管理平台）主导 AI 实验室并构建 ASR 语音识别引擎，这段时间稍微有点偏离自己的主题，但好在也学习了很多健康管理和AI的知识，也不算浪费，心理健康必将从单维度的心理咨询单兵作战转变到多维度的心理健康管理的持久战。",
-    "接下来，三十五岁，一个临界值的年龄，决定跳出公司的晋升路径，追求一个人操盘一件事情的可能，这个可能也许是自己的产品，也许是与这个赛道的同行者合作开发相关产品，也有可能就不做研发的事情了，毕竟这块事情价值越来越低，不过疗愈这个核心是我一直想要坚持下去的，只要是围绕这件事，其他我保持开放态度。",
+    "接下来，三十五岁，一个临界值的年龄，决定跳出公司的晋升路径，追求一个人操盘一件事情的可能，这个可能也许是自己的产品，也许是与这个赛道的同行者合作开发相关产品，也有可能就不做研发的事情了，毕竟这块事情价值越来越低，不过心理这个核心是我一直想要坚持下去的，只要是围绕这件事，其他我保持开放态度。",
     "上面就是我大致的来时路了，这一路走来并没有取得太多亮眼的成绩，好在也没有遭受过多大的挫折，对于得到的东西我异常感恩，对于失去的东西我也并不舍得，只是人生不是只活在上半场，下半场还剩很多年（也许），还是希望有可以折腾的事情让我渡过这漫长而又丰满的一生。",
   ],
   timeline: [
@@ -314,7 +314,7 @@ const zh: SiteCopy = {
     {
       period: "2022–至今",
       title: "走向独立开发",
-      desc: "跳出公司路径，在疗愈与技术的交汇处持续操盘",
+      desc: "跳出公司路径，在心理与技术的交汇处持续操盘",
     },
   ],
   social: [
@@ -450,26 +450,26 @@ const zh: SiteCopy = {
       question: "如何与 墨崔 合作或联系？",
       umamiEvent: "faq-contact",
       answer:
-        "可以通过页面中的 GitHub、豆瓣、小红书或微信入口联系，适合围绕疗愈、心理健康、AI 与独立产品展开合作。",
+        "可以通过页面中的 GitHub、豆瓣、小红书或微信入口联系，适合围绕心理健康、AI 与独立产品展开合作。",
     },
     {
       question: "墨崔 的产品理念是什么？",
       umamiEvent: "faq-philosophy",
       answer:
-        "在疗愈与技术的十字路口，综合运用工程、心理学、佛学与产品经验，做出踏实、有用、能帮助他人的产品。",
+        "在心理与技术的十字路口，综合运用工程、心理学、佛学与产品经验，做出踏实、有用、能帮助他人的产品。",
     },
   ],
 };
 
 const en: SiteCopy = {
   htmlLang: "en",
-  documentTitle: "Mocui — At the Crossroads of Healing and Technology",
+  documentTitle: "Mocui — At the Crossroads of Psychology and Technology",
   documentDescription:
-    "Personal site of Mocui, an independent developer working at the intersection of healing and technology.",
+    "Personal site of Mocui, an independent developer working at the intersection of psychology and technology.",
   ui: {
     nav: {
       about: "About",
-      blog: "Blog",
+      blog: "Research",
     },
     navToggle: "Toggle navigation",
     navAria: "Main navigation",
@@ -497,7 +497,7 @@ const en: SiteCopy = {
     wechatQr: "WeChat QR code",
     close: "Close",
     footerCopy: "Mocui · Independent developer",
-    footerCredit: "Healing × Technology · Hangzhou · 2026",
+    footerCredit: "Psychology × Technology · Hangzhou · 2026",
     copyright: "All rights reserved",
     language: "Language",
     status: {
@@ -505,10 +505,10 @@ const en: SiteCopy = {
       soon: "Coming soon",
       offline: "Offline",
     },
-    blogLabel: "Blog",
+    blogLabel: "Research",
     blogTitle: "Thoughts that aren't products yet",
     blogLead: "No publishing schedule. When something arrives, it lives here.",
-    blogBack: "Back to the blog",
+    blogBack: "Back to research",
     blogEmpty: "No posts yet.",
     blogNotFound: "This post wasn't found",
     blogNotFoundLead: "It may not be written yet, or the address has changed.",
@@ -520,15 +520,15 @@ const en: SiteCopy = {
   brandTitle: "Mocui",
   name: "Mocui",
   tagline:
-    "I'm 60% programmer and 40% counselor. At the intersection of healing and technology, I draw on both sides to build products that can actually help people.",
+    "I'm 60% programmer and 40% counselor. At the intersection of psychology and technology, I draw on both sides to build products that can actually help people.",
   heroEyebrow: "I am . Independent developer",
-  heroTitle: "At the crossroads of healing and technology",
+  heroTitle: "At the crossroads of psychology and technology",
   heroTags: [
     "10+ years in tech",
     "8+ years in mental health",
     "National Level-3 counselor",
     "Crisis intervention volunteer",
-    "Healing architect",
+    "Psychology industry architect",
   ],
   aboutIntro:
     "I've come to feel that many things can't be planned. The narrative arc only appears after the events of a life have already happened — then you splice them together. I think Steve Jobs said something similar in that famous speech.",
@@ -538,7 +538,7 @@ const en: SiteCopy = {
     "During that long Odyssey, Wu Zhihong opened a door. I encountered counseling, and in the years of study that followed I received a great deal of positive feedback. So I thought I might try becoming a counselor. Being a J-type, I acted: two years at Dream, the national Level-3 counseling certificate, crisis-intervention hotline work at Hangzhou Seventh People's Hospital. It felt smooth. I felt born for this work — which, of course, is exactly the peak of Mount Stupid. Then, as expected, I slid into the Valley of Despair, and realized that helping people as a counselor, face to face, might not be the right fit for me.",
     "Then one day, by Erhai Lake in Dali, Yunnan, it clicked: I know technology, and I've studied psychology for so long — why not put the two together, and build something in the overlap?",
     "That's where things began to turn, onto a steadier slope. First at Hangzhou Xinmao, a counseling platform, I built psychological assessment products from scratch — a genuinely happy stretch of my career, and the first time I understood what it feels like to work on something I love. Later at Hangzhou Jianhai, a chronic-disease health management platform, I led an AI lab and built an ASR engine. That period drifted a bit from my theme, but I learned a lot about health management and AI, so it wasn't wasted. Mental health will have to move from the lone counselor fighting alone to multidimensional, long-term mental-health management.",
-    "Then came thirty-five — a threshold. I decided to step off the company promotion track and pursue the possibility of running something myself: maybe my own products, maybe building with others in this field, maybe even leaving engineering altogether, as the value of that work keeps falling. Healing is the core I want to keep. Around that, I stay open.",
+    "Then came thirty-five — a threshold. I decided to step off the company promotion track and pursue the possibility of running something myself: maybe my own products, maybe building with others in this field, maybe even leaving engineering altogether, as the value of that work keeps falling. Psychology is the core I want to keep. Around that, I stay open.",
     "That's roughly the path that brought me here. I haven't collected many shiny achievements, and I haven't suffered any great disasters either. I'm unusually grateful for what I've received, and I don't cling to what I've lost. Life isn't only the first half; there are still many years in the second (perhaps). I still hope there will be things worth tinkering with, to carry me through this long and abundant life.",
   ],
   timeline: [
@@ -570,7 +570,7 @@ const en: SiteCopy = {
     {
       period: "2022–now",
       title: "Going independent",
-      desc: "Left the company track; still building at the intersection of healing and technology",
+      desc: "Left the company track; still building at the intersection of psychology and technology",
     },
   ],
   social: [
@@ -705,15 +705,16 @@ const en: SiteCopy = {
       question: "How can I work with or reach Mocui?",
       umamiEvent: "faq-contact",
       answer:
-        "Use the GitHub, Douban, Xiaohongshu, or WeChat links on this page. Good fits include healing, mental health, AI, and independent products.",
+        "Use the GitHub, Douban, Xiaohongshu, or WeChat links on this page. Good fits include psychology, mental health, AI, and independent products.",
     },
     {
       question: "What is Mocui's product philosophy?",
       umamiEvent: "faq-philosophy",
       answer:
-        "At the crossroads of healing and technology: bring engineering, psychology, Buddhism, and product craft together, and make things that are grounded, useful, and able to help people.",
+        "At the crossroads of psychology and technology: bring engineering, psychology, Buddhism, and product craft together, and make things that are grounded, useful, and able to help people.",
     },
   ],
 };
 
 export const copies: Record<Locale, SiteCopy> = { zh, en };
+

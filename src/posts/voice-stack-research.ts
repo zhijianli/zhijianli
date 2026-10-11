@@ -12,6 +12,9 @@ const tbl = (headers: string[], rows: string[][]): BlogBlock => ({
 });
 
 export const voiceStackResearchBody: BlogBlock[] = [
+  p(
+    "前段有团队找我调研一下市面上成熟的语音方案，以适配他们的心理教练产品，我研究了国内外市面上适合教练技术的各语音方案，输出调研报告如下。"
+  ),
   p("**版本**：v0.1 · **日期**：2026-09-22"),
   h2("执行摘要"),
   p("Volo 教练产品需要 **中英双语实时语音对话**，后端部署在 **AWS 美国俄亥俄（us-east-2）**。"),
@@ -116,7 +119,7 @@ export const voiceStackResearchBody: BlogBlock[] = [
   ["维度", "负面占比", "核心发现", "教练场景含义"],
   [
     ["长会话稳定性", "28.9%（28/97）", "10–15min 准确率下降；~30% 连接成功但无音频；模型升级 regression / rollback", "30min 教练需会话监控 + 版本回滚预案"],
-    ["语气自然度", "19.6%（19/97）", "robotic、不如 ElevenLabs·Google；「更 expressive」未兑现", "不能假设开箱即「疗愈语气」"],
+    ["语气自然度", "19.6%（19/97）", "robotic、不如 ElevenLabs·Google；「更 expressive」未兑现", "不能假设开箱即「心理语气」"],
     ["成本", "16.5%（16/97）", "生产太贵 / 原型 $40+ / 上下文 token 膨胀（与 §3.2 听+说 $1.44/30min 不矛盾）", "长对话需单独成本护栏"],
     ["打断 / barge-in", "15.5%（15/97）", "自我打断；VAD 调参仍过敏；外放 AEC/回声致自说自话", "WebRTC AEC + semantic VAD（eagerness: medium）"],
     ["回复速度", "8.2%（8/97）", "gpt-realtime-2 轮间 5–20s 死空气；function calling 变慢；默认语速偏慢", "监控轮间停顿，必要时回滚版本"],
@@ -142,7 +145,7 @@ export const voiceStackResearchBody: BlogBlock[] = [
   ["维度", "正面占比", "核心发现", "教练场景含义"],
   [
     ["回复速度", "9.1%（14/154）", "后续轮次 2–3s；3.1 Flash Live 升级后延迟更低；部分生产测得 ~922ms", "首连/首包仍慢，不能假设全链路低延迟"],
-    ["语气自然度", "7.1%（11/154）", "expressive / 情感回应「whole other level」；3.1 迁移后「更 natural」；音频质量获认可", "疗愈语气潜力高，但常与 function calling 缺失并存"],
+    ["语气自然度", "7.1%（11/154）", "expressive / 情感回应「whole other level」；3.1 迁移后「更 natural」；音频质量获认可", "心理语气潜力高，但常与 function calling 缺失并存"],
     ["打断 / barge-in", "4.5%（7/154）", "silenceDurationMs / END_SENSITIVITY 调参后可 work；activity_start flush workaround；AEC 配置指南", "需客户端 VAD + 工程 workaround，非开箱稳定"],
     ["长会话稳定性", "0%（0/154）", "无「30min 稳定不掉线」类明确正面表述", "长教练会话必须自建监控与压缩/resumption"],
     ["成本", "0%（0/154）", "无「定价合理」共识；虽有 §3.2 听+说 $0.34/30min 理论值，社区多谈 token 膨胀", "长对话需单独成本护栏 + 上下文压缩"],
@@ -229,7 +232,7 @@ export const voiceStackResearchBody: BlogBlock[] = [
     ["长会话稳定性", "23.6%（17/72）", "纯端到端 700–900ms 且 Function Call 偶发失效/未注入；同生态 ASR corpus 幻觉；V2EX 称 qwen infra「生产没法用」", "30min 教练不宜纯依赖 Realtime FC；需 volo 外挂或双轨"],
     ["成本", "13.9%（10/72）", "V2EX 对比认为 qwen 工程/计费不如豆包；Flash 误判 turn 导致重复输入抬高用量；Plus 单价更高", "需账单监控；Simple flow 用 Flash + quality gate"],
     ["回复速度", "11.1%（8/72）", "纯端到端首字 700–900ms；级联下限 800ms+；千问 PC 输入「2s+ 不可接受」（非 Realtime API）", "不能假设全链路 sub-500ms；Ohio 跨境需 Demo 验证"],
-    ["语气自然度", "4.2%（3/72）", "Flash 抢话/截断句尾；背景噪音误判为指令；与「自然 turn」目标冲突", "疗愈教练选 Plus；Flash 仅低延迟探路"],
+    ["语气自然度", "4.2%（3/72）", "Flash 抢话/截断句尾；背景噪音误判为指令；与「自然 turn」目标冲突", "心理教练选 Plus；Flash 仅低延迟探路"],
     ["打断 / barge-in", "4.2%（3/72）", "未清 buffer 会播「过期答案」并回音；仅后端 cancel 而本地不停播仍「broken」", "必须实现 barge-in 全链路；不能只看模型侧"],
   ],
 ),
