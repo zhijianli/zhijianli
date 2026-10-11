@@ -46,7 +46,7 @@ export const appTechArchitectureBodyEn: BlogBlock[] = [
     "Someone recently asked me to map out the tech architecture of a mental-health product. After I finished drawing it, I realized the diagram was fairly general—and it's also the architecture I keep coming back to when shipping my own products."
   ),
   img(
-    "/images/app-tech-architecture.svg",
+    "/images/app-tech-architecture-en.svg",
     "General application tech architecture: clients, API gateway, backend services, AI interaction layer, infrastructure, and cloud resources"
   ),
   h2("Top to bottom: one call path"),

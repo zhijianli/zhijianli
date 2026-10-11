@@ -4,6 +4,7 @@ import {
   appTechArchitectureBodyEn,
 } from "./posts/app-tech-architecture";
 import { mentalHealth2026Body } from "./posts/mental-health-2026";
+import { mentalHealth2026BodyEn } from "./posts/mental-health-2026-en";
 import { voiceStackResearchBody } from "./posts/voice-stack-research";
 import { voiceStackResearchBodyEn } from "./posts/voice-stack-research-en";
 
@@ -68,8 +69,8 @@ const enPosts: BlogPost[] = [
     tags: ["Industry", "Business"],
     title: "China Online Mental Health Industry Report 2026",
     excerpt:
-      "A deep dive into China's online mental health market: demand, payers, regulation, competition, and where startups can win in the next 3–5 years. Full text in Chinese.",
-    body: mentalHealth2026Body,
+      "A deep dive into China's online mental health market: demand, payers, regulation, competition, and where startups can win in the next 3–5 years.",
+    body: mentalHealth2026BodyEn,
   },
   {
     slug: "voice-stack-research",
